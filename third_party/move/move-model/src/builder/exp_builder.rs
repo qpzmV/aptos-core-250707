@@ -1813,6 +1813,8 @@ impl ExpTranslator<'_, '_, '_> {
                             } else {
                                 exp.into()
                             }
+                        } else {
+                            exp.into()
                         }
                     } else {
                         exp.into()
