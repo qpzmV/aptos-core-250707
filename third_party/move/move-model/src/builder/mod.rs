@@ -1,6 +1,7 @@
 // Copyright (c) The Diem Core Contributors
 // Copyright (c) The Move Contributors
 // SPDX-License-Identifier: Apache-2.0
+#![feature(let_chains)]
 
 pub mod binary_module_loader;
 mod builtins;
