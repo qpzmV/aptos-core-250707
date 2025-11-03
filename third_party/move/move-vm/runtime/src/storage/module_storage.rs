@@ -25,6 +25,8 @@ use move_vm_types::{
     module_cyclic_dependency_error, module_linker_error,
     value_serde::FunctionValueExtension,
     values::{AbstractFunction, SerializedFunctionData},
+    module_id_interner::{InternedModuleId, InternedModuleIdPool},
+    ty_interner::{InternedTypePool, TypeVecId},
 };
 use std::sync::Arc;
 
@@ -529,6 +531,8 @@ where
         module.extension().size_in_bytes(),
         module.code().deserialized().clone(),
         runtime_environment.struct_name_index_map(),
+        InternedTypePool::new(),
+        InternedModuleIdPool::new(),
     )
     .map_err(|e| e.finish(Location::Undefined))?;
 
