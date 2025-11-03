@@ -637,15 +637,16 @@ impl AptosDB {
                 let _timer = OTHER_TIMERS_SECONDS.timer_with(&["indexer_index"]);
                 // n.b. txns_to_commit can be partial, when the control was handed over from consensus to state sync
                 // where state sync won't send the pre-committed part to the DB again.
-                if let Some(chunk) = chunk_opt
-                    && chunk.len() == num_txns as usize
-                {
-                    let write_sets = chunk
-                        .transaction_outputs
-                        .iter()
-                        .map(|t| t.write_set())
-                        .collect_vec();
-                    indexer.index(self.state_store.clone(), first_version, &write_sets)?;
+                if let Some(chunk) = chunk_opt {
+                    if chunk.len() == num_txns as usize
+                    {
+                        let write_sets = chunk
+                            .transaction_outputs
+                            .iter()
+                            .map(|t| t.write_set())
+                            .collect_vec();
+                        indexer.index(self.state_store.clone(), first_version, &write_sets)?;
+                    }   
                 } else {
                     let write_sets: Vec<_> = self
                         .ledger_db
