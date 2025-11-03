@@ -531,8 +531,8 @@ where
         module.extension().size_in_bytes(),
         module.code().deserialized().clone(),
         runtime_environment.struct_name_index_map(),
-        InternedTypePool::new(),
-        InternedModuleIdPool::new(),
+        &InternedTypePool::new(),
+        &InternedModuleIdPool::new(),
     )
     .map_err(|e| e.finish(Location::Undefined))?;
 
