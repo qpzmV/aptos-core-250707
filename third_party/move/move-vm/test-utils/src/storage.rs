@@ -78,15 +78,15 @@ impl TableResolver for BlankStorage {
 /// Simple in-memory storage for modules and resources under an account.
 #[derive(Debug, Clone)]
 struct InMemoryAccountStorage {
-    resources: BTreeMap<StructTag, Bytes>,
-    modules: BTreeMap<Identifier, Bytes>,
+    pub resources: BTreeMap<StructTag, Bytes>,
+    pub modules: BTreeMap<Identifier, Bytes>,
 }
 
 /// Simple in-memory storage that can be used as a Move VM storage backend for testing purposes.
 #[derive(Clone)]
 pub struct InMemoryStorage {
     runtime_environment: RuntimeEnvironment,
-    accounts: BTreeMap<AccountAddress, InMemoryAccountStorage>,
+    pub accounts: BTreeMap<AccountAddress, InMemoryAccountStorage>,
     #[cfg(feature = "table-extension")]
     tables: BTreeMap<TableHandle, BTreeMap<Vec<u8>, Bytes>>,
 }
