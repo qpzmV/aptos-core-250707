@@ -77,7 +77,7 @@ impl TableResolver for BlankStorage {
 
 /// Simple in-memory storage for modules and resources under an account.
 #[derive(Debug, Clone)]
-struct InMemoryAccountStorage {
+pub struct InMemoryAccountStorage {
     pub resources: BTreeMap<StructTag, Bytes>,
     pub modules: BTreeMap<Identifier, Bytes>,
 }
