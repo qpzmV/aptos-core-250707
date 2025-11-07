@@ -347,7 +347,6 @@ where
     > {
         use hashbrown::hash_map::Entry::*;
 
-        println!("get_module_code, module_cache.num: {:?}", self.num_modules());
         Ok(match self.module_cache.borrow_mut().entry(key.clone()) {
             Occupied(entry) => Some(entry.get().as_module_code_and_version()),
             Vacant(entry) => builder.build(key)?.map(|module| {
